@@ -5,7 +5,7 @@ const name = "chris";
 const PORT = 8080;
 const cors = require('cors');
 const mysql = require('mysql2');
-require('dotenv').config()
+
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -22,7 +22,7 @@ var port = "3307";
 var username = "user_sizebroken";
 var password = "938f499111b011ade8a888d870ceb9cc1c7e2f6d";
 
-var con = mysql.createConnection({
+var db = mysql.createConnection({
   host: hostname,
   user: username,
   password,
@@ -30,15 +30,24 @@ var con = mysql.createConnection({
   port,
 });
 
-con.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
+app.get('/', function (req, res) {
+    res.json(`hello u are connected`)
+})
 
-con.query("SELECT 1+1").on("result", function (row) {
-  console.log(row);
-});
+//check db connection 
+db.connect(err => {
+    if (err) {
+        console.log(err, 'db failed');
+    } else
+        console.log('connected to databse  succesfully');
+})
 
+// con.connect(function (err) {
+//   if (err) throw err;
+//   console.log("Connected!");
+// });
+
+// 
 
 
 //get all data
