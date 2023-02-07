@@ -158,7 +158,7 @@ app.post('/user', (req, res) => {
 app.put("/user/:id", (req, res) => {
     const ids = req.params.id;
 
-    const rqt = "UPDATE shell SET `fullname`=?,`email`=?,`mobile`=? WHERE id= ?";
+    const rqt = "UPDATE users SET `fullname`=?,`email`=?,`mobile`=? WHERE id= ?";
     const values = [ /*"tilte from node ", "desc from backend", "cover from backend"*/
 
         req.body.fullname,
