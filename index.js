@@ -128,31 +128,52 @@ app.post('/user', (req, res) => {
 
 
 //update data
-app.put('/user/:id', (res, req) => {
+// app.put('/user/:id', (res, req) => {
 
-    console.log(req.body, ' request body put')
-    let ids = req.body.id
-    let fullName = req.body.fullname;
-    let eMail = req.body.email;
-    let mb = req.body.mobile;
-
-
-    let rqt = `update users set fullname = '${fullName}' , email ='${eMail}' , mobile ='${mb}' where id = ${ids}`;
-
-    db.query(rqt, (err, result) => {
-        if (err) {
-            console.log(err);
-        }
-        res.send({
-            message: 'updated sucessfully'
-        });
-
-    });
+//     console.log(req.body, ' request body put')
+//     let ids = req.body.id
+//     let fullName = req.body.fullname;
+//     let eMail = req.body.email;
+//     let mb = req.body.mobile;
 
 
+//     let rqt = `update users set fullname = '${fullName}' , email ='${eMail}' , mobile ='${mb}' where id = ${ids}`;
+
+//     db.query(rqt, (err, result) => {
+//         if (err) {
+//             console.log(err);
+//         }
+//         res.send({
+//             message: 'updated sucessfully'
+//         });
+
+//     });
 
 
-});
+
+
+// });
+
+
+app.put("/user/:id", (req, res) => {
+    const ids = req.params.id;
+
+    const rqt = "UPDATE shell SET `fullname`=?,`email`=?,`mobile`=? WHERE id= ?";
+    const values = [ /*"tilte from node ", "desc from backend", "cover from backend"*/
+
+        req.body.fullname,
+        req.body.email,
+        req.body.mobile
+    ]
+    db.query(rqt, [...values, ids], (err, data) => {
+        if (err) return res.json(err)
+        return res.json("updated succesfully")
+    })
+
+})
+
+
+
 
 
 //delete data
