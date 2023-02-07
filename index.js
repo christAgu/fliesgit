@@ -118,7 +118,7 @@ app.post('/user', (req, res) => {
             console.log(err);
         }
         res.send({
-            message: 'inserted sucessfully'
+            message: ' cool ! inserted sucessfully🥳🥳'
         });
 
 
@@ -167,7 +167,11 @@ app.put("/user/:id", (req, res) => {
     ]
     db.query(rqt, [...values, ids], (err, data) => {
         if (err) return res.json(err)
-        return res.json("updated succesfully")
+       return res.send({
+            message: ' ✍️ updated sucessfully'
+
+
+        });
     })
 
 })
@@ -187,11 +191,11 @@ app.delete('/user/:id', (req, res) => {
             console.log(err)
         }
         res.send({
-            message: ' delete sucessfully'
+            message: ' deleted sucessfully'
 
 
         });
-        console.log(req.body, 'deleted successfully')
+        console.log(req.body, '🤡deleted successfully')
 
     })
 })
